@@ -1,0 +1,23 @@
+extends layout
+
+//- block header
+//-   h1 YO~!
+//- we can use different block headers here to override the headers in the file to which this is extending.
+
+block content
+  h2 Sale ends in #{h.moment().endOf('day').fromNow()}
+//- this is an example of using the moments library which is stored in the helper file
+  
+  
+  //- if we leave the element out it'll always be a div
+  //- .wrapper.heyya
+  //- - const upDog = dog.toUpperCas(); //-this is how we create js code inside the view, there has to be the minus sign.
+  //-   p.hello my age is #{age} - this puts variables into texts
+  //-   span#yo Yo!!
+  //-   img(src="whatever.jpg" alt=`Something ${age}`) - using back ticks is how to put variables into attributes
+  //- 
+  //- h2
+  //-   | Hello
+  //-   em wazzzzup
+
+  //- to use the part of the view code in different parts of the page we have t extend our code.
