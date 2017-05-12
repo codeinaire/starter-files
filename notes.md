@@ -1,3 +1,20 @@
+It seems like the start of the process is with the app.js file, which can pass a bunch of middleware before it hits the route function. A bunch of files and methods are required in here one of which is the controller files and an instance of ROUTER which is used for the different methods in the request depending on the URL. This will be passed through to the controllers which will do something with the req such as get data from a database. However, it may even pass through some middleware before going to the database, like validating models or something like that. Even after extracting data from the database it could go through some more middleware which would be coming from a callback in the controller file and then that can be res to the view.
+
+
+
+
+Middleware lets us run code after the req but before the res. There is:
+- route specific middleware &
+- global middleware in which it will run through the middle ware before it gets to the router. This is where we'd run application wide functions such as authorisation.
+
+There's a lot of middleware in the app.js file and then it'll go into the routes file once it hits: app.use('/', routes); and if there are any errors during the routes it can go on to the middleware after the routes.
+
+
+M - Model: the layer that interacts with the database
+V - View: the templates that we use to see the res
+C - Controller: the part between the Model and the View that directs the data from the database to the view. Create a controller for each of the functional parts of the application
+
+
 router.get('name-of-url|directory', (req, res) => {
   res.render('name-of-file-to-render-at-url|directory')  
   })

@@ -1,5 +1,11 @@
 const express = require('express');
+
+const storeController = require('../controllers/storeController');
+
 const router = express.Router();
+
+
+router.get('/', storeController.myMiddleware, storeController.homePage);
 
 // Do work here
 // router.get('/', (req, res) => {
@@ -14,17 +20,17 @@ const router = express.Router();
 
 // req has the information
 // res has all the methods for sending data back to the user
-router.get('/reverse/:name', (req,res) => {
-  console.log(req.IncomingMessage); //this is happening through the url and perhaps forms and some other ways...
-  console.log("----------------RESPOND---------------");
-  console.log(res.domain); // this is what is being sent back to the client into their web browser.
-  const reverse = [...req.params.name].reverse().join('');
-  // req.params allows us to access the data that was sent.
-  console.log(reverse);
-  res.send(reverse);
-});
+// router.get('/reverse/:name', (req,res) => {
+//   console.log(req.IncomingMessage); //this is happening through the url and perhaps forms and some other ways...
+//   console.log("----------------RESPOND---------------");
+//   console.log(res.domain); // this is what is being sent back to the client into their web browser.
+//   const reverse = [...req.params.name].reverse().join('');
+//   // req.params allows us to access the data that was sent.
+//   console.log(reverse);
+//   res.send(reverse);
+// });
 
-router.get('/', (req, res) => {
+// router.get('/', (req, res) => {
   // const john = { name: 'John', age: 100, height: 'forever' };
   // res.send(john);
   // res.render('hello', {
@@ -34,10 +40,10 @@ router.get('/', (req, res) => {
   // res.render('hello');
 ;
 // res.send('tey it works');
-res.render('hello', {
-  title: ''
-});
-});
+// res.render('hello', {
+//   title: ''
+// });
+// });
 
 // req - an object with data that is coming from the client to the server
 // res - an object sent back to the client
