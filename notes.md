@@ -1,4 +1,59 @@
-19/05/2007 15:00
+##19/05/2007 15:00
+Here we covered error handling, the best ways to handle it is by creating an errorHandlers file and create a function in there that catches an error in the routes. Once an error is caught it will send it to the next error handler in that file and, hopefully, spit out errors. The errors handle is included as a deconstructored object into the controller file and wrapped around the controllers in the router.
+
+
+
+## ERROR HANDLING
+if we don't wrap our functions in a try/catch we have to wrap it in a catchErrors function... or a function that will catch the errors to handle the errors.
+
+
+##XMAS TREE code or CALLBACK HELL
+where the callbacks get so long that it's too much to put into the controllers... so there must be a better way to do multiple things before we get into sending a res back to the client.
+### the old way
+`exports.createStore = (req, res) => {
+  const store = new Store(req.body); // creating a new object
+  store.save(function(err, store){
+    if (!err) {
+      console.log('It worked');
+        reviews.find(function(err, reviews){
+          reviews.find(function(err, reviews){
+            reviews.find(function(err, reviews){
+              etc
+              res.redirect('/');
+
+
+          })
+    }
+  }); // saving this object but it will redirect them straight
+  // away because of the asynch nature of Node in that it can do many
+  // things at once.
+};`
+
+However the new way uses promises with a different more readable code using mongoose with promises.
+
+### the ES6 way
+.then(store => {
+  return Store.find()
+})
+.then(stores => {
+  res.render('storelist', { stores: stores })
+})
+<!-- these can be chained -->
+<!-- .then(stores => {
+  res.render('storelist', { stores: stores })
+})
+.then(stores => {
+  res.render('storelist', { stores: stores })
+}) -->
+.catch(err => {
+  throw Error(err);
+})
+
+however there is an es8 way to do this:
+
+
+
+##19/05/2007 15:00
 so far we have covered how to write a form and send the data as a post request through a route that will send back a json. It wasn't send back the json data and I realised the bodyParser wasn't uncommented in the app.js. This was annoying because I wasn't sure what it was for a while. The form was put into a mixin which kind of reminds me of a partial. IT's also a little bit like a block which can extend another file's pug such as, in this case, the layout file.
 We created a store model that uses mongoose to interact with the data and global promises. We created a method to create a slug of the name before it is saved into the database what is a storeSchema.pre('save', function)
 

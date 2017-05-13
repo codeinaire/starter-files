@@ -5,6 +5,13 @@ const storeController = require('../controllers/storeController');
 const router = express.Router();
 
 // NOTE
+// COMPISITION
+// this is composition
+// { object deconstructoring } - this lets us just take the
+// one function from the file and not all of the file
+const { catchErrors } = require('../handlers/errorHandlers');
+
+// NOTE
 // this: storeController.testExportsOrder, was inbetween the
 // 2 and if it was at the end it wouldn't work because the last
 // callback is a res callback and will render the index page. Plus it has no 'next'
@@ -12,7 +19,7 @@ const router = express.Router();
 router.get('/', storeController.homePage);
 
 router.get('/add', storeController.addStore);
-router.post('/add', storeController.createStore);
+router.post('/add', catchErrors(storeController.createStore));
 
 module.exports = router;
 

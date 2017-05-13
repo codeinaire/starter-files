@@ -5,6 +5,19 @@
   Instead of using try{} catch(e) {} in each controller, we wrap the function in
   catchErrors(), catch and errors they throw, and pass it along to our express middleware with next()
 */
+// NOTE
+// ERROR HANDLING
+// this is wrapped around all the routes in the app.js file
+// if an error is caought in one of the functions. it Takes
+// in the function (fn) and it'll return a function that calls
+// the function being tested so that if there is an error it'll
+// activate the .catch(next) which catches the error then skips the
+// app.use('/', routes) and goes to the middleware after
+// app.use('/',routes)
+// I don't really understand what is happening here but it's
+// basically wrapping the controller function in another function
+// that is returning it as a .catch(next) this just catches
+// the error and the other handlers take care of it after this one
 
 exports.catchErrors = (fn) => {
   return function(req, res, next) {
