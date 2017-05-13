@@ -4,9 +4,19 @@ const storeController = require('../controllers/storeController');
 
 const router = express.Router();
 
+// NOTE
+// this: storeController.testExportsOrder, was inbetween the
+// 2 and if it was at the end it wouldn't work because the last
+// callback is a res callback and will render the index page. Plus it has no 'next'
+//  storeController.myMiddleware,
+router.get('/', storeController.homePage);
 
-router.get('/', storeController.myMiddleware, storeController.homePage);
+router.get('/add', storeController.addStore);
+router.post('/add', storeController.createStore);
 
+module.exports = router;
+
+// NOTE
 // Do work here
 // router.get('/', (req, res) => {
 //   // console.log("What is up");
@@ -18,6 +28,7 @@ router.get('/', storeController.myMiddleware, storeController.homePage);
 //   // res.json(req.query); //query will get the query params which are the keys and values after the ?
 // });
 
+// NOTE
 // req has the information
 // res has all the methods for sending data back to the user
 // router.get('/reverse/:name', (req,res) => {
@@ -30,6 +41,7 @@ router.get('/', storeController.myMiddleware, storeController.homePage);
 //   res.send(reverse);
 // });
 
+// NOTE
 // router.get('/', (req, res) => {
   // const john = { name: 'John', age: 100, height: 'forever' };
   // res.send(john);
@@ -38,7 +50,7 @@ router.get('/', storeController.myMiddleware, storeController.homePage);
   //   age: req.query.age //this will get the age from the query url like the above value and these are called local variables OR LOCALS
   // })
   // res.render('hello');
-;
+// ;
 // res.send('tey it works');
 // res.render('hello', {
 //   title: ''
@@ -48,5 +60,3 @@ router.get('/', storeController.myMiddleware, storeController.homePage);
 // req - an object with data that is coming from the client to the server
 // res - an object sent back to the client
 // next is middleware
-
-module.exports = router;

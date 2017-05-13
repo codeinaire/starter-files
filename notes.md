@@ -1,6 +1,17 @@
+19/05/2007 15:00
+so far we have covered how to write a form and send the data as a post request through a route that will send back a json. It wasn't send back the json data and I realised the bodyParser wasn't uncommented in the app.js. This was annoying because I wasn't sure what it was for a while. The form was put into a mixin which kind of reminds me of a partial. IT's also a little bit like a block which can extend another file's pug such as, in this case, the layout file.
+We created a store model that uses mongoose to interact with the data and global promises. We created a method to create a slug of the name before it is saved into the database what is a storeSchema.pre('save', function)
+
+
+
+
+MIXIN
+is sort of like a function that will return some HTML
+
+
 It seems like the start of the process is with the app.js file, which can pass a bunch of middleware before it hits the route function. A bunch of files and methods are required in here one of which is the controller files and an instance of ROUTER which is used for the different methods in the request depending on the URL. This will be passed through to the controllers which will do something with the req such as get data from a database. However, it may even pass through some middleware before going to the database, like validating models or something like that. Even after extracting data from the database it could go through some more middleware which would be coming from a callback in the controller file and then that can be res to the view.
 
-
+App.js > App.js: app.use.various-middleware > App.js: app.use('/', routes); >  routes/index.js: router.method(path, handler - such as controllers or middleware) > middleware or controllers
 
 
 Middleware lets us run code after the req but before the res. There is:

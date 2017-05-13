@@ -25,8 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Takes the raw requests and turns them into usable properties on req.body
 // this is middleware. this is what the request goes through before it hits a routes file. It will check to see if the user has put any data in such as through a form and will put all the data in the req to be accessed  through the routes file
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Exposes a bunch of methods for validating data. Used heavily on userController.validateRegister
 app.use(expressValidator());
